@@ -3,10 +3,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity @Getter @Setter @NoArgsConstructor
 public class Client {
@@ -19,4 +17,6 @@ public class Client {
     private String lastName;
     private String email;
 
+    @OneToMany(mappedBy = "client")
+    private List<Review> reviews;
 }

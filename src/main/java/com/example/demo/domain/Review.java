@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity @Getter @Setter @NoArgsConstructor
@@ -21,4 +18,9 @@ public class Review {
     private String review;
     private String description;
 
+    @ManyToOne
+    private Client client;
+
+    @ManyToOne
+    private Movie movie;
 }
