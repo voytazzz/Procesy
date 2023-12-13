@@ -39,6 +39,19 @@ public class ClientServiceTest {
         Assertions.assertEquals("Doe", addedClient.getLastName());
         Assertions.assertEquals("john.doe@example.com", addedClient.getEmail());
     }
+    @Test
+    public void testGetClientById() {
+        Long clientId = 1L;
+        Client client = new Client();
+        client.setId(clientId);
+        client.setFirstName("John");
+        Mockito.when(this.clientRepository.findById(clientId)).thenReturn(Optional.of(client));
+        Optional<Client> result = this.clientService.getClientById(clientId);
+        Assertions.assertTrue(result.isPresent());
+        Assertions.assertEquals("John", ((Client)result.get()).getFirstName());
+    }
+
+
 
 
 }
