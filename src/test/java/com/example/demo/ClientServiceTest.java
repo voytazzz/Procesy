@@ -52,6 +52,20 @@ public class ClientServiceTest {
     }
 
 
+    @Test
+    public void testUpdateClient() {
+        Long clientId = 1L;
+        Client existingClient = new Client();
+        existingClient.setId(clientId);
+        existingClient.setFirstName("John");
+        Client updatedClientData = new Client();
+        updatedClientData.setFirstName("Jane");
+        Mockito.when(this.clientRepository.findById(clientId)).thenReturn(Optional.of(existingClient));
+        Mockito.when((Client)this.clientRepository.save(existingClient)).thenReturn(existingClient);
+        ResponseEntity<Client> response = this.clientService.updateClient(clientId, updatedClientData);
+        Assertions.assertEquals(200, response.getStatusCodeValue());
+        Assertions.assertEquals("Jane", existingClient.getFirstName());
+    }
 
 
 }
